@@ -1,0 +1,48 @@
+services:
+  mcp3:
+    image: image-mcp3
+    container_name: mcp3
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./storage:/app/storage
+    env_file: 
+      - ./mcp_servers/server_a/.env
+
+  mcp4:
+    image: image-mcp4
+    container_name: mcp4
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./storage:/app/storage
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    restart: unless-stopped
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:ollama
+    container_name: open-webui
+    ports:
+      - "3000:8080"
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+    depends_on:
+      ollama:
+        condition: service_started
+    volumes:
+      - open-webui:/app/backend/data
+    restart: unless-stopped
+
+volumes:
+  ollama:
+    external: true
+  open-webui:
+    external: true
+
