@@ -1,0 +1,12 @@
+# Projetos 
+
+## Projeto 1: Inteligência Artificial
+- Classificação de imagens de grãos de café
+- Uso de modelos ML para prever qualidade e tipo de grão
+- Status: Finalizado
+
+## Projeto 2: Previsão de Colheita de Café
+- Uso de modelos de Machine Learning para estimar a produção de café por região
+- Dados: clima, tipo de solo, histórico de colheitas
+- Objetivo: auxiliar produtores na logística e planejamento
+- Status: Em andamento

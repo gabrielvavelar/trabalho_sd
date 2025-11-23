@@ -1,0 +1,23 @@
+Modelo roteiro Neuron
+
+Neuron - UFLA
+
+Roteiro da Reunião – Tema: {tema}
+
+1. Abertura
+- Boas-vindas
+- Objetivo da reunião
+
+2. Discussão Principal
+- Tópicos relacionados a: {tema}
+
+3. Decisões
+- Registrar decisões principais
+
+4. Ações e Próximos Passos
+- Responsáveis
+- Prazos
+
+5. Encerramento
+- Resumo rápido
+- Próxima reunião
