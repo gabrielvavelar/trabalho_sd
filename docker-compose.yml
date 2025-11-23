@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   server_a:
     build: ./mcp_servers/server_a
@@ -25,6 +27,12 @@ services:
     volumes:
       - ollama:/root/.ollama
     restart: unless-stopped
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      "ollama serve & 
+      sleep 3 && 
+      ollama pull deepseek-r1:1.5b &&
+      tail -f /dev/null"
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:ollama
@@ -42,6 +50,4 @@ services:
 
 volumes:
   ollama:
-    external: true
   open-webui:
-    external: true
