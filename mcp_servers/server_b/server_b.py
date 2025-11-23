@@ -7,8 +7,8 @@ from pathlib import Path
 mcp = FastMCP("FS MCP")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-STORAGE_DIR = BASE_DIR / "storage"
-STORAGE_DIR.mkdir(exist_ok=True)
+STORAGE_DIR = BASE_DIR / "storage" / "docs"
+STORAGE_DIR.mkdir(parents=True, exist_ok=True)
 
 
 @mcp.tool()
