@@ -1,7 +1,7 @@
 services:
-  mcp3:
-    image: image-mcp3
-    container_name: mcp3
+  server_a:
+    build: ./mcp_servers/server_a
+    container_name: server_a
     ports:
       - "8001:8001"
     volumes:
@@ -9,9 +9,9 @@ services:
     env_file: 
       - ./mcp_servers/server_a/.env
 
-  mcp4:
-    image: image-mcp4
-    container_name: mcp4
+  server_b:
+    build: ./mcp_servers/server_b
+    container_name: server_b
     ports:
       - "8002:8002"
     volumes:
