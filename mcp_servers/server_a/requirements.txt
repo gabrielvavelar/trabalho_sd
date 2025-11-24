@@ -1,6 +1,0 @@
-google-genai
-fastmcp
-dotenv
-mcpo
-cloudinary
-uv
