@@ -5,10 +5,8 @@ from pathlib import Path
 
 mcp = FastMCP("Filesystem")
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-STORAGE_DIR = BASE_DIR / "storage" / "docs"
+STORAGE_DIR = Path("/app/storage/docs")
 STORAGE_DIR.mkdir(parents=True, exist_ok=True)
-
 
 @mcp.tool()
 async def list_files() -> dict:
@@ -27,7 +25,6 @@ async def list_files() -> dict:
                 "modified": time.ctime(stat.st_mtime)
             })
     return {"files": files}
-
 
 @mcp.tool()
 async def read_file(name: str, offset: int = 0, length: int = 2048) -> dict:
@@ -52,6 +49,6 @@ async def read_file(name: str, offset: int = 0, length: int = 2048) -> dict:
         "content_b64": data.decode("latin1")
     }
 
-
+    
 if __name__ == "__main__":
     mcp.run()

@@ -14,9 +14,7 @@ cloudinary.config(
     secure=True
 )
 
-# Cria a pasta storage se não existir
-
-BASE_DIR = Path(__file__).resolve().parent.parent   # sobe de mcp_servers para src
+BASE_DIR = Path(__file__).resolve().parent.parent 
 STORAGE_DIR = BASE_DIR / "storage" / "images"
 STORAGE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -32,7 +30,6 @@ def save_image_locally(img: bytes) -> str:
 
 
 def create_img_url(file_path: str) -> str:
-    # Cloudinary precisa do caminho completo do arquivo
     result = cloudinary.uploader.upload(
         file_path,
         resource_type="image"
