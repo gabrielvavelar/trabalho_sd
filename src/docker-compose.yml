@@ -5,7 +5,7 @@ services:
     ports:
       - "8001:8001"
     volumes:
-      - ./storage/images:/app/storage/images
+      - ./storage/images:/storage/images
     env_file: 
       - ./mcp_servers/image_mcp/.env
 
@@ -15,7 +15,7 @@ services:
     ports:
       - "8002:8002"
     volumes:
-      - ./storage/docs:/app/storage/docs
+      - ./storage/docs:/storage/docs
 
   ollama:
     image: ollama/ollama
@@ -29,7 +29,7 @@ services:
     command: >
       "ollama serve & 
       sleep 3 && 
-      ollama pull deepseek-r1:1.5b &&
+      ollama pull llama3.2:3b &&
       tail -f /dev/null"
 
   open-webui:

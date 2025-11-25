@@ -14,9 +14,7 @@ cloudinary.config(
     secure=True
 )
 
-BASE_DIR = Path(__file__).resolve().parent.parent 
-STORAGE_DIR = BASE_DIR / "storage" / "images"
-STORAGE_DIR.mkdir(parents=True, exist_ok=True)
+STORAGE_DIR = Path("/storage/images")
 
 
 def save_image_locally(img: bytes) -> str:

@@ -5,7 +5,8 @@ from pathlib import Path
 
 mcp = FastMCP("Filesystem")
 
-STORAGE_DIR = Path("/app/storage/docs")
+BASE_DIR = Path(__file__).resolve().parent.parent
+STORAGE_DIR = BASE_DIR / "storage" / "docs"
 STORAGE_DIR.mkdir(parents=True, exist_ok=True)
 
 @mcp.tool()
