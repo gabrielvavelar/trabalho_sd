@@ -2,6 +2,7 @@ from mcp.server.fastmcp import FastMCP
 import os
 import time
 from pathlib import Path
+import PyPDF2
 
 mcp = FastMCP("Filesystem")
 
@@ -28,27 +29,37 @@ async def list_files() -> dict:
     return {"files": files}
 
 @mcp.tool()
-async def read_file(name: str, offset: int = 0, length: int = 2048) -> dict:
+async def read_file(name: str) -> dict:
     """
     Read files locally
     
-    """  
+    """
     safe = os.path.basename(name)
     path = os.path.join(STORAGE_DIR, safe)
 
     if not os.path.exists(path):
         return {"error": "file not found"}
 
-    with open(path, "rb") as f:
-        f.seek(offset)
-        data = f.read(length)
+    try:
+        with open(path, "rb") as f:
+            reader = PyPDF2.PdfReader(f)
 
-    return {
-        "name": safe,
-        "offset": offset,
-        "length": len(data),
-        "content_b64": data.decode("latin1")
-    }
+            pages = []
+            for i, page in enumerate(reader.pages):
+                text = page.extract_text() or ""
+                pages.append({
+                    "page": i,
+                    "text": text,
+                })
+
+        return {
+            "name": safe,
+            "pages": len(pages),
+            "content": pages,  
+        }
+
+    except Exception as e:
+        return {"error": f"failed to read pdf: {e}"}
 
     
 if __name__ == "__main__":
